@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Bookstore</title>
+</head>
+<body>
+    <h1>Authors</h1>
+    <ul>
+        {% for author in authors %}
+            <li><strong>{{ author.name }}</strong> — {{ author.bio }}</li>
+        {% endfor %}
+    </ul>
+
+    <h1>Books</h1>
+    <ul>
+        {% for book in books %}
+            <li>
+                <strong>{{ book.title }}</strong> - ${{ book.price }} <br>
+                Author: {{ book.author.name }} <br>
+                Categories: 
+                {% for cat in book.categories.all %}
+                    {{ cat.name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h1>Categories</h1>
+    <ul>
+        {% for category in categories %}
+            <li>{{ category.name }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
